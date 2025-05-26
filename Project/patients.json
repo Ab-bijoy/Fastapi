@@ -1,0 +1,53 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 45,
+      "gender": "Male",
+      "blood_type": "O+",
+      "conditions": ["Hypertension", "Type 2 Diabetes"],
+      "medications": ["Metformin", "Lisinopril"],
+      "last_visit": "2024-11-15"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 37,
+      "gender": "Female",
+      "blood_type": "A-",
+      "conditions": ["Asthma"],
+      "medications": ["Albuterol"],
+      "last_visit": "2025-01-10"
+    },
+    {
+      "id": 3,
+      "name": "Robert Lee",
+      "age": 62,
+      "gender": "Male",
+      "blood_type": "B+",
+      "conditions": ["High Cholesterol"],
+      "medications": ["Atorvastatin"],
+      "last_visit": "2025-03-22"
+    },
+    {
+      "id": 4,
+      "name": "Emily Zhang",
+      "age": 29,
+      "gender": "Female",
+      "blood_type": "AB+",
+      "conditions": [],
+      "medications": [],
+      "last_visit": "2025-05-01"
+    },
+    {
+      "id": 5,
+      "name": "Carlos Rivera",
+      "age": 53,
+      "gender": "Male",
+      "blood_type": "O-",
+      "conditions": ["Arthritis"],
+      "medications": ["Ibuprofen"],
+      "last_visit": "2025-04-11"
+    }
+  ]
+  
