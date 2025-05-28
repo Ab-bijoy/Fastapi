@@ -7,7 +7,7 @@ app = FastAPI()
 # Initialize Azure OpenAI client
 endpoint = os.getenv("ENDPOINT_URL", "https://myjobsopenai.openai.azure.com/")
 deployment = os.getenv("DEPLOYMENT_NAME", "ngoai")
-subscription_key = os.getenv("AZURE_OPENAI_API_KEY", "75eecb7bd81f4fd2877a2f49dcce9dd9")
+subscription_key = os.getenv("AZURE_OPENAI_API_KEY", "")
 
 client = AzureOpenAI(
     azure_endpoint=endpoint,
