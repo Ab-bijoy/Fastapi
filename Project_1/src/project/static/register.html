@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new TodoApp account">
+    <title>Register — TodoApp</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="glass-card auth-card" style="max-width:500px">
+            <div style="text-align:center;margin-bottom:1.5rem">
+                <div class="nav-brand-icon" style="width:48px;height:48px;font-size:1.5rem;margin:0 auto 0.75rem;border-radius:12px">✓</div>
+            </div>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Sign up to start organizing your life</p>
+
+            <div id="auth-alert" class="alert"></div>
+
+            <form id="register-form" autocomplete="on">
+                <div class="form-group">
+                    <label class="form-label" for="reg-username">Username</label>
+                    <input class="form-input" type="text" id="reg-username" placeholder="Choose a username" autocomplete="username" required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Email</label>
+                    <input class="form-input" type="email" id="reg-email" placeholder="your@email.com" autocomplete="email" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-firstname">First Name</label>
+                        <input class="form-input" type="text" id="reg-firstname" placeholder="John" required minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-lastname">Last Name</label>
+                        <input class="form-input" type="text" id="reg-lastname" placeholder="Doe" required minlength="3">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="reg-password">Password</label>
+                    <input class="form-input" type="password" id="reg-password" placeholder="Create a password" autocomplete="new-password" required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="reg-confirm-password">Confirm Password</label>
+                    <input class="form-input" type="password" id="reg-confirm-password" placeholder="Confirm your password" autocomplete="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="reg-role">Role</label>
+                    <select class="form-select" id="reg-role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-full" type="submit" id="register-btn">Create Account</button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="/static/index.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>

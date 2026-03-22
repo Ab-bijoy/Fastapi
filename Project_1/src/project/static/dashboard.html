@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your todos efficiently">
+    <title>Dashboard — TodoApp</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="nav-brand-icon">✓</div>
+                TodoApp
+            </div>
+            <div class="nav-links">
+                <a href="/static/dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="/static/profile.html" class="nav-link">Profile</a>
+                <a href="/static/admin.html" class="nav-link" id="nav-admin" style="display:none">Admin</a>
+            </div>
+            <div class="nav-user">
+                <span style="font-size:0.85rem;color:var(--text-secondary)" id="nav-username"></span>
+                <div class="nav-avatar" id="nav-avatar"></div>
+                <button class="btn btn-ghost btn-sm" onclick="api.logout()" title="Sign out">⏻</button>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+            <div>
+                <h1 class="page-title">My Todos</h1>
+                <p class="page-subtitle">Stay organized and get things done</p>
+            </div>
+            <button class="btn btn-primary" onclick="openModal()">+ New Todo</button>
+        </div>
+
+        <div id="page-alert" class="alert"></div>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-active">0</div>
+                <div class="stat-label">Active</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-completed">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-high">0</div>
+                <div class="stat-label">High Priority</div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input class="form-input" type="text" id="search-input" placeholder="Search todos...">
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Done</button>
+            </div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="todo-grid" id="todo-list"></div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">New Todo</h2>
+                <button class="btn btn-ghost btn-icon" onclick="closeModal()">✕</button>
+            </div>
+            <div id="modal-alert" class="alert"></div>
+            <form id="todo-form">
+                <div class="form-group">
+                    <label class="form-label" for="todo-title">Title</label>
+                    <input class="form-input" type="text" id="todo-title" placeholder="What needs to be done?" required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="todo-desc">Description</label>
+                    <input class="form-input" type="text" id="todo-desc" placeholder="Add some details..." required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="todo-priority">Priority</label>
+                    <select class="form-select" id="todo-priority">
+                        <option value="1">1 — Low</option>
+                        <option value="2">2 — Medium</option>
+                        <option value="3" selected>3 — High</option>
+                        <option value="4">4 — Urgent</option>
+                        <option value="5">5 — Critical</option>
+                    </select>
+                </div>
+                <div class="form-group" id="completed-group" style="display:none">
+                    <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.9rem">
+                        <input type="checkbox" id="todo-completed" style="width:18px;height:18px;accent-color:var(--accent-purple)">
+                        Mark as completed
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" onclick="closeModal()">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="save-todo-btn">Save Todo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
