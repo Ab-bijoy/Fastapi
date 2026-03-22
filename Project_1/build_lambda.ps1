@@ -13,12 +13,21 @@ if (-not (Test-Path "requirements.txt")) {
     exit 1
 }
 
+# Relax exact version pinning for C-extensions that don't have matching wheels for Linux
+(Get-Content requirements.txt) -replace 'greenlet==.*', 'greenlet' | Set-Content requirements.txt
+(Get-Content requirements.txt) -replace 'psycopg2-binary==.*', 'psycopg2-binary' | Set-Content requirements.txt
+(Get-Content requirements.txt) -replace 'pydantic-core==.*', 'pydantic-core' | Set-Content requirements.txt
+
 Write-Host "=== Step 2: Cleaning previous build ===" -ForegroundColor Cyan
 if (Test-Path "package") { Remove-Item -Recurse -Force "package" }
 if (Test-Path "lambda_function.zip") { Remove-Item -Force "lambda_function.zip" }
 
 Write-Host "=== Step 3: Installing dependencies (Linux wheels for Lambda) ===" -ForegroundColor Cyan
-pip install `
+# Force disable the --user flag globally in case it is set in pip.ini
+$env:PIP_USER = "false"
+
+# Run pip from within poetry's virtual environment
+poetry run python -m pip install `
     -r requirements.txt `
     -t package `
     --platform manylinux2014_x86_64 `

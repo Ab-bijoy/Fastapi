@@ -18,7 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-Base.metadata.create_all(bind=engine)
+# Try to create tables, but don't crash the whole app if DB is unreachable on startup
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception as e:
+    print(f"Warning: Database connection failed on startup: {e}")
 
 @app.get("/health")
 async def health_check():
