@@ -2,7 +2,9 @@
 // API Client — Centralized fetch + JWT handling
 // ============================================
 
-const API_BASE = window.location.origin;
+// For local development: set CONFIG.API_BASE to window.location.origin in config.js
+// For production: set CONFIG.API_BASE to your Lambda URL in config.js
+const API_BASE = CONFIG.API_BASE;
 
 const api = {
     /** Get stored token */

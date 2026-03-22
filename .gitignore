@@ -1,0 +1,19 @@
+# Environment variables
+.env
+**/config.js
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Lambda build artifacts
+package/
+lambda_function.zip
+requirements.txt
+
+# IDE
+.vscode/
+.idea/

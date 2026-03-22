@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from mangum import Mangum
 from .db import engine
 from .models import Base
 from .Routers import auth, todos, admin, user
@@ -28,7 +29,11 @@ app.include_router(todos.router)
 app.include_router(admin.router)
 app.include_router(user.router)
 
-# Mount static files for frontend (must be after routers)
-static_dir = os.path.join(os.path.dirname(__file__), "static")
-if os.path.isdir(static_dir):
-    app.mount("/static", StaticFiles(directory=static_dir, html=True), name="static")
+# Mount static files only in local dev (not in Lambda)
+if not os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+    static_dir = os.path.join(os.path.dirname(__file__), "static")
+    if os.path.isdir(static_dir):
+        app.mount("/static", StaticFiles(directory=static_dir, html=True), name="static")
+
+# AWS Lambda handler (entry point for Lambda)
+handler = Mangum(app)

@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter
 from pydantic import BaseModel,Field
 from ..models import User
@@ -17,7 +18,10 @@ router = APIRouter(
 )
 
 # openssl rand -hex 32 i use this code for generate this
-SECRET_KEY = '04eee8efc621b395b73afd7c350f04d4b710746db68ed08d0fe1782bacd902f0'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    '04eee8efc621b395b73afd7c350f04d4b710746db68ed08d0fe1782bacd902f0'
+)
 ALGORITHM = 'HS256'
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 def get_db():
