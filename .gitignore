@@ -1,6 +1,6 @@
 # Environment variables
- .env
- **/config.js
+#.env
+# **/config.js
 
 # Python
 __pycache__/
