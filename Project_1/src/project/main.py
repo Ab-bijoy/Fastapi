@@ -9,7 +9,7 @@ import os
 
 app = FastAPI()
 
-# CORS middleware
+# CORS middleware — handled by FastAPI so it works everywhere
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

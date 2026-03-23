@@ -58,6 +58,7 @@ const api = {
         const opts = {
             method,
             headers: this._headers(json),
+            cache: 'no-cache', // Prevent the browser from caching GET requests
         };
         if (body && json) opts.body = JSON.stringify(body);
         if (body && !json) opts.body = body;
@@ -107,7 +108,7 @@ const api = {
 
     // ---- Todos ----
     async getTodos() {
-        return this._request('GET', '/');
+        return this._request('GET', '');
     },
 
     async getTodo(id) {
@@ -128,7 +129,7 @@ const api = {
 
     // ---- User ----
     async getProfile() {
-        return this._request('GET', '/user/');
+        return this._request('GET', '/user');
     },
 
     async updatePhone(phone_number) {
